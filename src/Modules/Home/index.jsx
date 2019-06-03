@@ -3,8 +3,8 @@ import React from 'react'
 import {withRouter,Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import SEO from '../../Utils/Lib/seo';
-import LazyImage from '../../Components/Image'
-import {LazyCard} from '../../Components/Card'
+import LazyImage from '../../Components/UILib/Image'
+import {LazyCard} from '../../Components/UILib/Card'
 
 function HomeContainer () {
 

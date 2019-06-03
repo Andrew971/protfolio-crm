@@ -6,10 +6,10 @@ import routeListe from './Utils/Constants/constantRoute'
 import {PublicRoute} from './Utils/Constants/constMethod'
 import {ThemeProvider} from 'styled-components';
 import SEO from './Utils/Lib/seo';
-import {AppBar} from './Components/AppBar';
-import {AppContainer,Main} from './Components/Container';
-import {Drawer} from './Components/Drawer';
-import Icon from './Components/Icon'
+import {AppBar} from './Components/UILib/AppBar';
+import {AppContainer,Main} from './Components/UILib/Container';
+import {Drawer} from './Components/UILib/Drawer';
+import Icon from './Components/UILib/Icon'
 
 // import PropTypes from 'prop-types';
 

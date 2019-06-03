@@ -3,7 +3,7 @@ import React from 'react'
 import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import SEO from '../../Utils/Lib/seo';
-import {SortedTable} from '../../Components/Table';
+import {SortedTable} from '../../Components/UILib/Table';
 // import Icon from '../../Components/Icon'
 import {mockProductList} from '../../Utils/Constants/mockData'
 

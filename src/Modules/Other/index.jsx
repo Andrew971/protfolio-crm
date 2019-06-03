@@ -3,8 +3,8 @@ import React from 'react'
 import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import SEO from '../../Utils/Lib/seo';
-import {TextField} from '../../Components/Input';
-import Icon from '../../Components/Icon'
+import {TextField} from '../../Components/UILib/Input';
+import Icon from '../../Components/UILib/Icon'
 
 function OtherContainer() {
   const ref = React.useRef();
