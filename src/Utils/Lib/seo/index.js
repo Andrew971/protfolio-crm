@@ -13,10 +13,6 @@ const getMetaTags = ({
     { itemprop: 'name', content: title },
     { itemprop: 'description', content: description },
     { name: 'description', content: description },
-    { name: 'twitter:site', content: `${config.defaultTwitterAccount}` },
-    { name: 'twitter:title', content: `${title} | ${config.baseUrl}` },
-    { name: 'twitter:description', content: description },
-    { name: 'twitter:creator', content: twitter || `${config.defaultTwitterAccount}` },
     { name: 'og:title', content: `${title} | ${config.baseUrl}` },
     // Refers to the Open Graph content type (for Facebook–see "Object Types" table here)
     { name: 'og:type', content: contentType },
@@ -26,6 +22,13 @@ const getMetaTags = ({
     { name: 'og:locale', content: `${config.locale}` },
     // { name: 'fb:app_id', content: '<FB App ID>' },
   ];
+
+  if(twitter){
+    metaTags.push({ name: 'twitter:site', content: `${config.defaultTwitterAccount}` });
+    metaTags.push({ name: 'twitter:title', content: `${title} | ${config.baseUrl}` });
+    metaTags.push({ name: 'twitter:description', content: description });
+    metaTags.push({ name: 'twitter:creator', content: twitter || `${config.defaultTwitterAccount}` });
+    }
 
   if (published) metaTags.push({ name: 'article:published_time', content: published });
   if (updated) metaTags.push({ name: 'article:modified_time', content: updated });

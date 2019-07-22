@@ -121,6 +121,7 @@ font-size: 1rem;
     line-height: 1.5;
     letter-spacing: 0.00938em;
     margin: .5rem 0;
+    
 ${Media.phone `
 
 `}

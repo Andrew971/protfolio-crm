@@ -16,25 +16,29 @@ const TableBodyContainer = React.memo(props => {
     tableAction,
     isSelected,
     onRowClick,
+    pagination,
     onCheckBoxClick
   } = React.useContext(SortedTableContext);
   
   const {data, order, orderBy, rowsPerPage, page} = tableState;
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
-  useLazyDataTable(tableBodyRef,'0px',tableState)
+  !pagination && useLazyDataTable(tableBodyRef,'0px',tableState)
 
 
   const  onClickHandler = event => {
     onRowClick  && onRowClick(event)
   }
+
+
   return (
       <TableBody ref={tableBodyRef}>
         {stableSort(data, getSorting(order, orderBy))
           .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
           .map(data => {
+
             return (
-              <TableRow key={data.Key} hover onClick={onClickHandler} className="hide">
+              <TableRow key={data.Key} hover onClick={onClickHandler} className={!pagination&&"hide"}>
                 <TableCell
                   onClick={event =>{ 
                     event.stopPropagation()

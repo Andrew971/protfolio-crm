@@ -34,8 +34,37 @@ export const StyledCard =  styled.header`
 
 ${props=>props.containerStyle && props.containerStyle}
 
-${Media.phone `
 
+& .header_content_container{
+  z-index:1;
+  display:flex;
+  width:${props=> props.theme.containerWidth?props.theme.containerWidth:"70vw"};
+  max-width:${props=> props.theme.containerWidth?props.theme.containerWidth:"70vw"};
+  height:100%;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -ms-flex-flow:column wrap;
+  flex-flow:column wrap;
+  -webkit-box-pack:center;
+  -ms-flex-pack:center;
+  justify-content:center;
+  -webkit-box-align:center;
+  -ms-flex-align:center;
+  align-items:center;
+  z-index:10;
+  color:#fff;
+  padding:1rem;
+}
+
+${Media.phone `
+& .header_content_container{
+  width:90vw;
+  max-width:90vw;
+  
+}
 `}
 
 ${Media.tablet `
@@ -75,8 +104,8 @@ export const StyledLink =  styled.a`
   }
   ${props=>props.rounded
   ?`
-  border-bottom-left-radius: ${props.skew.left};
-  border-bottom-right-radius: ${props.skew.righ};
+  border-bottom-left-radius: ${props.rounded.left};
+  border-bottom-right-radius: ${props.rounded.right};
   `
   :null
   }
@@ -176,15 +205,15 @@ export const ShapeContainer = styled.div`
 
   ${props=>props.skew
   ?`
-  transform: skewY(${props.skew.degree});
+  transform: skew(${props.skew.degree});
   transform-origin: ${props.skew.origin};
   `
   :null
   }
   ${props=>props.rounded
   ?`
-  border-bottom-left-radius: ${props.skew.left};
-  border-bottom-right-radius: ${props.skew.righ};
+  border-bottom-left-radius: ${props.rounded.left};
+  border-bottom-right-radius: ${props.rounded.right};
   `
   :null
   }

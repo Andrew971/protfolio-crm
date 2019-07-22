@@ -266,3 +266,40 @@ export const mockClientList = [
     formattedAddress: "Faugas Castel, 97129 Lamentin, Guadeloupe-France"
   }, '000000', "59000055", "sordier@xxx.com", {id:'1'}, [])
 ]
+
+
+
+export const mockContentModel = {
+  "id": "d8c5079c-4b08-4651-a368-8991e95093c9",
+  "name": "Blog",
+  "displayId": "Blog",
+  "description": "this is a test for blog",
+  "displayField":'54de46c1-1a9f-4f38-b012-0f70af3a2c87',
+  "field": {
+    "54de46c1-1a9f-4f38-b012-0f70af3a2c87": {
+      "id": "54de46c1-1a9f-4f38-b012-0f70af3a2c87",
+      "type": "Text",
+      "name": "title",
+      "description": "description for title field"
+    },
+    "f35d183a-6ddb-4a4b-a2ae-748ce7b5d6e6": {
+      "id": "f35d183a-6ddb-4a4b-a2ae-748ce7b5d6e6",
+      "type": "Rich Editor",
+      "name": "Content 1",
+      "description": "content for space 1"
+    },
+    "cabefdac-5703-4453-a0d6-2f9cafad5267": {
+      "id": "cabefdac-5703-4453-a0d6-2f9cafad5267",
+      "type": "Text",
+      "name": "text 2",
+      "description": ""
+    },
+    "9c846a6f-4704-4402-bfdd-913ab730816a": {
+      "id": "9c846a6f-4704-4402-bfdd-913ab730816a",
+      "type": "Rich Editor",
+      "name": "content 2",
+      "description": ""
+    }
+  }
+}
+

@@ -5,12 +5,13 @@ import {Media} from '../../Config';
 export const Container = styled.table `
 min-width:700px;
 width: 100%;
-margin-top: 1rem;
+/* margin-top: 1rem; */
 display: table;
 font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 border-spacing: 0;
 border-collapse: collapse;
 /* position:relative; */
+background: inherit;
 
 
 ${Media.desktop `
@@ -23,13 +24,14 @@ export const TableHead = styled.thead `
 display: table-header-group;
 vertical-align: middle;
 border-color: inherit;
+background: inherit;
 
 & th {
   cursor:pointer;
-    /* position: sticky;
+    position: sticky;
     position: -webkit-sticky;
-    top: 0; */
-    background: white;
+    top: 0;
+    background: inherit;
     z-index: 10;
 
 }
@@ -50,6 +52,7 @@ vertical-align: middle;
 visibility:visible;
 transition: opacity .4s ease-in-out;
 opacity:1;
+background: inherit;
 
 &.hide{
   visibility:hidden;

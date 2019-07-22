@@ -1,17 +1,29 @@
 import React from 'react';
-import { ShapeContainer } from './styles'
+import { ShapeContainer,StyledLink,StyledImage } from './styles'
 import {HeaderContext} from './constants/context'
+import {useProgressiveImage} from '../../Lib';
 
 
-const ImageBackground = React.memo((props) => {
+const Shape = React.memo((props) => {
 
   const { 
     skew,
     rounded, 
-    shapeStyle
+    shapeStyle,
+    offSet=0, 
+    src, 
+    preview, 
+    srcSet,
+    sizes, 
+    alt,
   } = React.useContext(HeaderContext);
 
+  const imageRef = React.useRef();
+  const parentImageRef = React.useRef();
 
+
+  (src||preview) && useProgressiveImage(parentImageRef, offSet)
+ 
 
 
   return (
@@ -21,10 +33,26 @@ const ImageBackground = React.memo((props) => {
       shapeStyle={shapeStyle}
 
     >
-
+    {(src||preview)&& <StyledLink 
+      href={src} 
+      className="replace" 
+      ref={parentImageRef} 
+      srcSet={srcSet} 
+      sizes={sizes} 
+      
+        >
+      <StyledImage 
+        className="preview"
+        src={preview}
+        ref={imageRef} 
+        data-preview={preview} 
+        alt={alt}
+      />
+    </StyledLink>
+    }
     </ShapeContainer>
   )
 })
 
 
-export default ImageBackground
+export default Shape

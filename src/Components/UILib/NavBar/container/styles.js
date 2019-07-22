@@ -21,22 +21,23 @@ export const Container = styled.nav `
   position:fixed;
   top:0;
   left:0;
-  background: rgb(92,150,255);
-background: linear-gradient(90deg, rgba(92,150,255,1) 0%, rgba(0,189,255,1) 100%);  
+  ${props=>props.containerStyle && props.containerStyle}
+
+    
   ${props=> props.theme?css`
     color:${props.isScrolling
     ?props.theme.navBar.color.secondary
     :props.theme.navBar.color.primary};
-    /* background:${props.isScrolling
+    background:${props.isScrolling
     ?props.theme.navBar.background.secondary
-    :props.theme.navBar.background.primary}; */
+    :props.theme.navBar.background.primary};
   `:css`
     color:${props.isScrolling
     ?"#222"
     :"#fff"};
-    /* background:${props.isScrolling?
+    background:${props.isScrolling?
     "#fff"
-    :"transparent"}; */
+    :"transparent"};
   `};
 
   transition: background 250ms ease-in-out;
@@ -77,7 +78,7 @@ export const Content = styled.div `
     -webkit-box-align:center;
     -ms-flex-align:center;
     align-items:center;
-
+      color:inherit;
     & .navbar__logo{
       
     }

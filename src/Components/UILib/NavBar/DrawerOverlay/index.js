@@ -61,9 +61,9 @@ position: fixed;
 /* top: 0; */
 z-index:1002;
 bottom: 0;
-background: rgb(32,32,32);
-  background: linear-gradient(90deg, rgba(32,32,32,1) 0%, rgba(33,33,42,1) 50%, rgba(18,14,14,1) 100%);
-  
+
+${props=>props.drawerStyle && props.drawerStyle}
+
 ${props=>props.direction === "right"
   ?css`
   left: 0;

@@ -13,7 +13,7 @@ const Container =  styled.nav`
   height: 5.5vh;
   
   position:sticky;
-  z-index:100000;
+  z-index:10;
   background: rgb(101,171,241); /* Old browsers */
   background: -moz-linear-gradient(top,  rgba(101,171,241,1) 0%, rgba(101,171,241,1) 0%, rgba(101,171,241,1) 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(top,  rgba(101,171,241,1) 0%,rgba(101,171,241,1) 0%,rgba(101,171,241,1) 100%); /* Chrome10-25,Safari5.1-6 */

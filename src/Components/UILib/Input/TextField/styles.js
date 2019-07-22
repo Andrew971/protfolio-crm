@@ -171,6 +171,7 @@ input:focus ~ label, input:required:valid ~ label{
   color:rgba(250, 0, 0, 0.54);
   }
 }
+
 &.valid-input {
 
   & input ~ label{

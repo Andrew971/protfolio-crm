@@ -1,5 +1,6 @@
 export default {
   Main: {
+    appBarHeight:'5.5vh',
     containerWidth:'70vw',
     navBar:{
       background:{

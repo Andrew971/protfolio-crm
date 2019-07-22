@@ -21,6 +21,7 @@ const TextField = React.memo(React.forwardRef((props, ref) => {
     pattern={},
     errorMessage,
     withWordCounter,
+    ...restProps
   } = props;
 
 const inputContainerRef= React.useRef();
@@ -34,6 +35,53 @@ function onChangeHandler (event) {
   applyFieldStyle(event,state,action,props)
   setWordCount(event,state,action,props)
 }
+
+// Options for the observer (which mutations to observe)
+var config = { attributes: true, childList: true, subtree: true };
+
+// Callback function to execute when mutations are observed
+var callback = function(mutationsList, observer) {
+    for(var mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            // console.log('A child node has been added or removed.');
+        }
+        else if (mutation.type === 'attributes') {
+            if(mutation.attributeName === "value"){
+              // console.log(mutation);
+              mutation.target.parentElement.classList.add('valid-input');
+              // console.log('The ' + mutation.attributeName + ' attribute was modified.');
+
+            }
+        }
+    }
+};
+
+
+
+React.useEffect(()=>{
+// Create an observer instance linked to the callback function
+var observer = new MutationObserver(callback);
+  const element = inputContainerRef.current;
+
+// Start observing the target node for configured mutations
+observer.observe(element, config);
+
+return ()=>{
+  observer.disconnect();
+
+  }
+},[config])
+
+React.useEffect(()=>{
+  const element = inputContainerRef.current;
+  if(element.getElementsByTagName('input')[0].defaultValue !== ""){
+    element.classList.add('valid-input');
+  }
+return ()=>{
+
+  }
+},[])
+
   // console.log('pattern',pattern)
   return(
     <Container>
@@ -52,6 +100,7 @@ function onChangeHandler (event) {
         placeholder={placeholder}
         maxLength={max}
         required={required}
+        {...restProps}
       />
       <label>{label}</label>
       </ContainerInput>

@@ -5,3 +5,4 @@ export {default as useOnClickOutside} from './useOnClickOutside'
 export {default as useInputValidation} from './useInputValidation'
 export {default as useLazyDataTable} from './useLazyDataTable'
 export {default as useProgressiveImage} from './useProgressiveImage'
+export {default as Portal } from './portal';

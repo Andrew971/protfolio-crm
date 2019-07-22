@@ -1,7 +1,7 @@
 import React from 'react';
 import styled,{css} from "styled-components";
 import {Media} from '../../Config';
-import {useLockBodyScroll} from '../../Lib';
+import {useLockBodyScroll,useEventListener,useOnClickOutside} from '../../Lib';
 
 
 
@@ -11,7 +11,7 @@ height: 100vh; /* 100% Full-height */
 width:100vw;
 position:absolute;
 top:0;
-z-index:1000;
+z-index:9;
 ${props=>props.direction === "right"
   ?css`
     left: 0;
@@ -24,10 +24,10 @@ ${props=>props.direction === "right"
       left: 0;
     `
 }
-will-change: transform, opacity;
-transition: opacity .6s ease-out, transform 0s .6s ease-out;
+will-change: opacity;
+/* transition: opacity .6s .2s ease-out, transform 0s .6s ease-out; */
 opacity:0;
-${props=>props.direction === "right"
+/* ${props=>props.direction === "right"
   ?css`
   transform: translateX(-${props.distance}vw);
   `
@@ -38,11 +38,15 @@ ${props=>props.direction === "right"
     :css`
       transform: translateX(-${props.distance}vw);
     `
-  }
+  } */
+  display:none;
+  /* transition: opacity .5s .5s ease-in; */
+
 &.show {
-  will-change: transform, opacity;
+  display:block;
   transition: opacity .5s ease-in;
-  transform: translateX(0vw) ;
+  /* will-change: transform, opacity; */
+  /* transform: translateX(0vw) ; */
   opacity:1
   
 }
@@ -54,16 +58,16 @@ ${Media.desktop `
 `;
 
 const Drawer = styled.div `
-height: 94.5vh; /* 100% Full-height */
+height: ${props=>props.theme.appBarHeight?`calc(100vh - ${props.theme.appBarHeight})`:'94vh'}; /* 100% Full-height */
 width:${props=>props.open?'20vw':'5vw'};
 /* position: fixed;  */
-z-index:1002;
+z-index:9;
 bottom: 0;
 
 ${props=>props.direction === "right"
   ?css`
   left: 0;
-  /* transform: ${props.open?`transform:translateX(0vw)`:`translateX(-${props.distance}vw)`}; */
+  /* transform: ${props.open?`transform:translateX(0vw)`:`translateX(-${props.distance }vw)`}; */
   `
   :props.direction === "left"
     ?css`
@@ -84,7 +88,7 @@ padding: 2vh 0; /* Place content 60px from the top */
 transition: width .5s; /* 0.5 second transition effect to slide in the sidenav */
 box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
 
-a {
+/* a {
     padding: 1rem 2rem;
     text-decoration: none;
     font-size: 25px;
@@ -98,6 +102,34 @@ a:hover{
 
 a:hover {
   text-decoration: none;
+} */
+
+
+& .drawer__menuItem{
+  ${props=>props.direction === "right"
+  ?css`
+    flex-flow:row-reverse nowrap;
+  `
+  :props.direction === "left"
+    ?css`
+    flex-flow:row nowrap;
+
+    `
+    :css`
+    flex-flow:row nowrap;
+    `
+};
+
+  & div:first-child {
+  
+  }
+
+  & div:last-child {
+    visibility:${props=>props.open?'none':'hidden'};
+    transition: opacity .2s .2s ease-in-out;
+    opacity:${props=>props.open?'1':'0'};
+  }
+
 }
 
 @media (max-width: 660px) {
@@ -114,12 +146,20 @@ ${Media.desktop `
 
 
 export default React.memo((props) => {
-  const { open } = props;
+  const { open,onClose,direction,distance } = props;
   const drawerRef = React.useRef();
   const containerRef = React.useRef()
 
   useLockBodyScroll(open);
-  // useOnClickOutside(drawerRef,containerRef, () => onClose());
+  
+  useOnClickOutside(drawerRef,containerRef, () =>{
+    // const container = containerRef.current;
+    // container.classList.remove('show',false)
+    onClose()
+  } 
+  );
+
+  useEventListener('click',()=>onClose(),drawerRef);
 
   const showDrawerWithOverlay = React.useCallback((condition)=>{
     const container = containerRef.current;
@@ -143,21 +183,22 @@ export default React.memo((props) => {
 
 
   const modifyChildren = (child) => {
-
+    // console.log(child)
     const props = {
-      className:"test"
+      className:"drawer__menuItem"
+      
     };
 
     return React.cloneElement(child, props);
   }
 
   return (<React.Fragment>
+        <Container id="overlay" ref={containerRef} direction={direction} distance={distance}/>
       <Drawer {...props} ref={drawerRef}>
         {
           React.Children.map(props.children, (child) =>  modifyChildren(child))
         }
       </Drawer>
-        <Container ref={containerRef} className="" {...props}/>
       </React.Fragment>
   )
 })

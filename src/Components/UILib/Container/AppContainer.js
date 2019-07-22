@@ -5,7 +5,7 @@ import {Media} from '../Config';
 
 const AppContainer = styled.div `
 display:flex;
-flex-flow:row nowrap;
+flex-flow:${props=>props.reverse?`row-reverse nowrap`:'row nowrap'};
 align-items:flex-start;
 justify-content:flex-start;
 overflow:hidden;

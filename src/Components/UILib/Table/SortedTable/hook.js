@@ -50,7 +50,7 @@ function reducer(state, action) {
         orderBy
       };
       case 'CHANGE_PAGE':
-      // console.log(action.payload)
+      console.log(action.payload)
       return {
         ...state,
         page: state.page  + Number(action.payload)

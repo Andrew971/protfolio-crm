@@ -16,7 +16,7 @@ const Header = React.memo((props) => {
   const modifyChildren = (child) => {
     // const elementList = Array.from(containerRef.current.classList)
     const props = {
-      className:`lazy-card_content_element`
+      className:`header_content_container`
     };
 
     return React.cloneElement(child, props);
@@ -34,8 +34,8 @@ const Header = React.memo((props) => {
       {...restProps}
     >
     {svg && <SvgClip />}
-    {(!src||!preview) && (skew||rounded) && <Shape /> }
-    {(src||preview)&&<ImageBackground />}
+    {(skew||rounded) && <Shape /> }
+    {(src||preview) && (!skew||!rounded) && <ImageBackground />}
     {
       React.Children.map(props.children, (child) =>  modifyChildren(child))
     }

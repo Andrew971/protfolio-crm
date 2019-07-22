@@ -23,8 +23,10 @@ const Table = React.memo(props => {
     tableState, 
     tableAction,
     isSelected,
+    pagination,
     ...restProps
   }
+  // console.log(data)
   return ( <SortedTableContext.Provider value={paramObject}>
     <Container>
       <TableHead />
